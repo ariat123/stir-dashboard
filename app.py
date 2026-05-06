@@ -423,6 +423,72 @@ with st.sidebar:
         st.rerun()
     st.caption("Cache TTL: 10 min")
 
+    st.markdown("---")
+    st.markdown("### Manual refresh")
+
+    # Client-side rate limit: block re-clicks within 60 seconds
+    last_req = st.session_state.get("last_refresh_request_time")
+    cooldown_remaining = 0
+    if isinstance(last_req, datetime):
+        elapsed = (datetime.now() - last_req).total_seconds()
+        if elapsed < 60:
+            cooldown_remaining = int(60 - elapsed)
+
+    button_disabled = cooldown_remaining > 0
+    button_label = (
+        f"Trigger refresh ({cooldown_remaining}s)"
+        if button_disabled
+        else "Trigger refresh"
+    )
+
+    if st.button(
+        button_label,
+        disabled=button_disabled,
+        width="stretch",
+        key="trigger_refresh",
+    ):
+        try:
+            token = st.secrets.get("GITHUB_PAT")
+        except Exception:
+            token = None
+
+        if not token:
+            st.error(
+                "GITHUB_PAT not configured. Add it to .streamlit/secrets.toml "
+                "(local) or repo Secrets in Streamlit Cloud."
+            )
+        else:
+            import requests as _requests
+            try:
+                resp = _requests.post(
+                    "https://api.github.com/repos/ariat123/stir-dashboard/"
+                    "actions/workflows/refresh-data.yml/dispatches",
+                    headers={
+                        "Authorization": f"Bearer {token}",
+                        "Accept": "application/vnd.github+json",
+                        "X-GitHub-Api-Version": "2022-11-28",
+                    },
+                    json={"ref": "main"},
+                    timeout=10,
+                )
+                if resp.status_code == 204:
+                    st.session_state["last_refresh_request_time"] = datetime.now()
+                    st.success(
+                        "Refresh triggered - check back in 2-3 minutes"
+                    )
+                else:
+                    body = resp.text[:200] if resp.text else "(empty body)"
+                    st.error(
+                        f"GitHub API returned {resp.status_code}: {body}"
+                    )
+            except Exception as e:
+                st.error(f"Request failed: {type(e).__name__}: {e}")
+
+    st.caption(
+        "Manually trigger a fresh data pull. "
+        "Auto-refresh runs daily at 7pm ET."
+    )
+
 
 strip_raw, ref_rates, macro_series, fomc_dates, all_releases, metadata = load_data()
 
