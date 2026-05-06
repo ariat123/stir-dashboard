@@ -1,0 +1,22 @@
+__pycache__/
+.venv/
+*.pyc
+.DS_Store
+.env
+
+# Local-dev only: disk-backed last-good macro values used when live loaders
+# hit FRED outages. Production reads from data/*.parquet, so this file is
+# not needed in the repo.
+.cache/
+
+# Streamlit secrets file (FRED_API_KEY etc); production uses repo secrets.
+.streamlit/secrets.toml
+
+# Local HTML chart exports from test_real_data.py
+figures/
+
+# Claude Code local settings (per-user IDE state, not project config)
+.claude/
+
+# data/ IS tracked (parquet + json refreshed daily by GitHub Actions).
+# Keep .gitkeep so the directory exists before the first refresh.

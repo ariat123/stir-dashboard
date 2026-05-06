@@ -1,0 +1,38 @@
+name: Refresh Data
+
+on:
+  schedule:
+    # 23:00 UTC = 7pm ET (daylight time) / 6pm ET (standard time)
+    # Mon-Fri only - markets are closed weekends and the strip won't change
+    - cron: '0 23 * * 1-5'
+  workflow_dispatch:  # manual trigger from Actions tab
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed to commit data/ back to the repo
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run refresh script
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python scripts/refresh_data.py
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Auto-refresh data $(date -u +%Y-%m-%d)"
+          git push

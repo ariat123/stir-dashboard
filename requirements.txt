@@ -1,0 +1,10 @@
+pandas
+plotly
+numpy
+fredapi
+yfinance
+streamlit>=1.40
+icalendar
+requests
+curl_cffi
+pyarrow
