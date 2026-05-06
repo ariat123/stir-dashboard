@@ -36,7 +36,7 @@ from dashboard_core import (
 st.set_page_config(
     page_title="STIR Dashboard",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 PLOT_CFG = {"displayModeBar": False}
