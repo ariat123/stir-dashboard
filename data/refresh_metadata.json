@@ -1,9 +1,9 @@
 {
-  "refreshed_at": "2026-05-06T20:28:50.370612+00:00",
+  "refreshed_at": "2026-05-06T21:05:54.958337+00:00",
   "loaders": {
-    "strip": "ok (30 rows, 4173 bytes)",
+    "strip": "ok (30 rows, 4162 bytes)",
     "reference_rates": "ok (63 rows, 3301 bytes)",
-    "macro_series": "ok (76 rows, 5331 bytes)",
+    "macro_series": "ok (77 rows, 5269 bytes) partial: ['T5YIFR']",
     "fomc_dates": "ok (8 dates, 130 bytes)",
     "econ_releases": "ok (115 entries, 6241 bytes)"
   }
