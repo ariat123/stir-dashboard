@@ -1,9 +1,9 @@
 {
-  "refreshed_at": "2026-06-02T00:12:52.870634+00:00",
+  "refreshed_at": "2026-06-03T00:26:40.759760+00:00",
   "loaders": {
-    "strip": "ok (30 rows, 4187 bytes)",
-    "reference_rates": "ok (62 rows, 3349 bytes)",
-    "macro_series": "ok (0 rows, 3611 bytes) partial: ['DFII10', 'T10YIE', 'T5YIFR', 'ICSA']",
+    "strip": "ok (30 rows, 4196 bytes)",
+    "reference_rates": "ok (62 rows, 3351 bytes)",
+    "macro_series": "ok (12 rows, 4203 bytes) partial: ['DFII10', 'T10YIE', 'T5YIFR']",
     "fomc_dates": "ok (8 dates, 130 bytes)",
     "econ_releases": "ok (115 entries, 6241 bytes)"
   }
