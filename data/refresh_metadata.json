@@ -1,9 +1,9 @@
 {
-  "refreshed_at": "2026-07-14T23:52:22.631566+00:00",
+  "refreshed_at": "2026-07-15T23:57:01.925245+00:00",
   "loaders": {
-    "strip": "ok (28 rows, 4150 bytes)",
-    "reference_rates": "ok (62 rows, 3355 bytes)",
-    "macro_series": "ok (77 rows, 5386 bytes)",
+    "strip": "ok (28 rows, 4142 bytes)",
+    "reference_rates": "ok (62 rows, 3348 bytes)",
+    "macro_series": "ok (77 rows, 5389 bytes)",
     "fomc_dates": "ok (8 dates, 130 bytes)",
     "econ_releases": "ok (115 entries, 6241 bytes)"
   }
