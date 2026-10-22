@@ -1,9 +1,9 @@
 {
-  "refreshed_at": "2026-10-21T01:16:35.813873+00:00",
+  "refreshed_at": "2026-10-22T01:12:10.185959+00:00",
   "loaders": {
-    "strip": "ok (27 rows, 4144 bytes)",
-    "reference_rates": "ok (61 rows, 3264 bytes)",
-    "macro_series": "ok (76 rows, 5263 bytes)",
+    "strip": "ok (27 rows, 4138 bytes)",
+    "reference_rates": "fail: syntax error: line 1, column 0",
+    "macro_series": "ok (0 rows, 3611 bytes) partial: ['DFII10', 'T10YIE', 'T5YIFR', 'ICSA']",
     "fomc_dates": "ok (8 dates, 130 bytes)",
     "econ_releases": "ok (115 entries, 6241 bytes)"
   }
